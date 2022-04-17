@@ -1,12 +1,13 @@
 import { useState, FC, useEffect } from 'react';
-import { apiGetBox } from '../api-mock-0/api';
+import { apiGetBox, apiPatchBox } from '../api-mock-0/api';
+import { Box } from '../api-mock-0/structure';
 import '../App.css';
 
 import { Switch } from '../components-common/Switch';
 import { BASE_URL, USERNAME, PASSWORD, USERNAME_KEY, PASSWORD_KEY, BASE_URL_KEY } from '../parameters/constants';
 
 export const HomePage: FC = () => {
-    
+
     const [baseURL, setBaseURL] = useState<string>(BASE_URL);
     const [username, setUsername] = useState<string>(USERNAME);
     const [password, setPassword] = useState<string>(PASSWORD);
@@ -27,19 +28,45 @@ export const HomePage: FC = () => {
 
     const getBox = () => {
         apiGetBox()
-        .then(r => console.log(r));
+            .then(r => console.log(r));
+    }
+
+    const setBoxMove = (id: number, isChecked: boolean) => {
+        switch(id) {
+            case 0:
+                setBox0Move(isChecked);
+                break;
+            case 1:
+                setBox1Move(isChecked);
+                break;
+            case 2:
+                setBox2Move(isChecked);
+                break;
+            default:
+                break;
+        }
+    }
+
+    const patchBoxMove = (id: number, isChecked: boolean) => {
+        const box: Box = { id: id, move: isChecked };
+
+        apiPatchBox(id, box)
+        .then(_ => setBoxMove(id, isChecked))
+        .catch(e => {
+            console.log(e)
+        });
     }
 
     useEffect(() => {
         apiGetBox()
-        .then(r => {
-            console.log(r)
-            setBox0Move(r[0].move);
-            setBox1Move(r[1].move);
-            setBox2Move(r[2].move);
-        });
+            .then(r => {
+                console.log(r)
+                setBox0Move(r[0].move);
+                setBox1Move(r[1].move);
+                setBox2Move(r[2].move);
+            });
     }, []);
-   
+
     return (
         <>
             <h1>API Test</h1>
@@ -54,7 +81,7 @@ export const HomePage: FC = () => {
                         placeholder="URL"
                     />
                 </label>
-                <br/>
+                <br />
                 <label>Username:
                     <input
                         style={{ width: "16rem" }}
@@ -64,7 +91,7 @@ export const HomePage: FC = () => {
                         placeholder="Username"
                     />
                 </label>
-                <br/>
+                <br />
                 <label>Password:
                     <input
                         style={{ width: "16rem" }}
@@ -74,18 +101,18 @@ export const HomePage: FC = () => {
                         placeholder="Password"
                     />
                 </label>
-                <br/>
+                <br />
                 <button type="submit" onClick={e => saveSettings()}>Submit</button>
             </div>
 
-            <hr/>
-                <button type="submit" onClick={e => getBox()}>Get</button>
-            
-            <hr/>
+            <hr />
+            <button type="submit" onClick={e => getBox()}>Get</button>
 
-            <Switch label="Box0:" isChecked={box0Move} onChange={isChecked=>setBox0Move(isChecked)}/>
-            <Switch label="Box1:" isChecked={box1Move} onChange={isChecked=>setBox1Move(isChecked)}/>
-            <Switch label="Box2:" isChecked={box2Move} onChange={isChecked=>setBox2Move(isChecked)}/>
+            <hr />
+
+            <Switch label="Box0:" isChecked={box0Move} onChange={isChecked => patchBoxMove(0, isChecked)} />
+            <Switch label="Box1:" isChecked={box1Move} onChange={isChecked => patchBoxMove(1, isChecked)} />
+            <Switch label="Box2:" isChecked={box2Move} onChange={isChecked => patchBoxMove(2, isChecked)} />
         </>
     );
 }
