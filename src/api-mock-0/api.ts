@@ -1,7 +1,8 @@
 import { BASE_URL } from "../parameters/constants";
 import { makeHeaders } from "./common";
+import { Box } from "./structure";
 
-export const apiGetBox = async (): Promise<null> => {
+export const apiGetBox = async (): Promise<Array<Box>> => {
 
     const headers = makeHeaders(
         {

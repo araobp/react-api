@@ -30,11 +30,15 @@ export const HomePage: FC = () => {
         .then(r => console.log(r));
     }
 
-    /*
     useEffect(() => {
-        apiGetBox().then(r=>console.log(r));
+        apiGetBox()
+        .then(r => {
+            console.log(r)
+            setBox0Move(r[0].move);
+            setBox1Move(r[1].move);
+            setBox2Move(r[2].move);
+        });
     }, []);
-    */
    
     return (
         <>

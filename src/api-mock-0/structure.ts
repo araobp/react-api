@@ -1,4 +1,4 @@
-export type Bod = {
+export type Box = {
     id: number;
     move: boolean;
 }
