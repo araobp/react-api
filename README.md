@@ -4,6 +4,8 @@
 
 This project is a template of frontend.
 
+<img src="./doc/rough_sketch.jpg" width=250>
+
 ## Project structure
 
 ```
