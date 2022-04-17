@@ -4,8 +4,6 @@
 
 This project is a template of frontend.
 
-<img src="./doc/rough_sketch.jpg" width=250>
-
 ## Project structure
 
 ```
@@ -21,5 +19,7 @@ This project is a template of frontend.
 - Backend in a virtual world: https://github.com/araobp/unity-api
 
 ## Test app
+
+<img src="./doc/rough_sketch.jpg" width=250>
 
 https://araobp.github.io/react-api/build/
