@@ -32,7 +32,7 @@ export const HomePage: FC = () => {
     }
 
     const setBoxMove = (id: number, isChecked: boolean) => {
-        switch(id) {
+        switch (id) {
             case 0:
                 setBox0Move(isChecked);
                 break;
@@ -51,10 +51,10 @@ export const HomePage: FC = () => {
         const box: Box = { id: id, move: isChecked };
 
         apiPatchBox(id, box)
-        .then(_ => setBoxMove(id, isChecked))
-        .catch(e => {
-            console.log(e)
-        });
+            .then(_ => setBoxMove(id, isChecked))
+            .catch(e => {
+                console.log(e)
+            });
     }
 
     useEffect(() => {
@@ -72,7 +72,7 @@ export const HomePage: FC = () => {
             <h1>API Test</h1>
             <hr />
             <div>
-                <label>URL:
+                <div style={{paddingBottom: "0.3rem"}}>URL:
                     <input
                         style={{ width: "16rem" }}
                         type="text"
@@ -80,28 +80,25 @@ export const HomePage: FC = () => {
                         onChange={e => setBaseURL(e.target.value)}
                         placeholder="URL"
                     />
-                </label>
-                <br />
-                <label>Username:
+                </div>
+                <div style={{paddingBottom: "0.3rem"}}>Username:
                     <input
-                        style={{ width: "16rem" }}
+                        style={{ width: "10rem" }}
                         type="text"
                         value={username}
                         onChange={e => setUsername(e.target.value)}
                         placeholder="Username"
                     />
-                </label>
-                <br />
-                <label>Password:
+                </div>
+                <div style={{paddingBottom: "0.3rem"}}>Password:
                     <input
-                        style={{ width: "16rem" }}
+                        style={{ width: "10rem" }}
                         type="text"
                         value={password}
                         onChange={e => setPassword(e.target.value)}
                         placeholder="Password"
                     />
-                </label>
-                <br />
+                </div>
                 <button type="submit" onClick={e => saveSettings()}>Submit</button>
             </div>
 
