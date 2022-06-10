@@ -1,6 +1,6 @@
 import { useState, FC, useEffect } from 'react';
 import { apiGetBox, apiPatchBox } from '../api-mock-0/api';
-import { Box } from '../api-mock-0/structure';
+import { Box__c } from '../api-mock-0/structure';
 import '../App.css';
 
 import { Switch } from '../components-common/Switch';
@@ -48,7 +48,7 @@ export const HomePage: FC = () => {
     }
 
     const patchBoxMove = (id: number, isChecked: boolean) => {
-        const box: Box = { id: id, move: isChecked };
+        const box: Box__c = { id__c: id, move__c: isChecked };
 
         apiPatchBox(id, box)
             .then(_ => setBoxMove(id, isChecked))
@@ -61,9 +61,9 @@ export const HomePage: FC = () => {
         apiGetBox()
             .then(r => {
                 console.log(r)
-                setBox0Move(r[0].move);
-                setBox1Move(r[1].move);
-                setBox2Move(r[2].move);
+                setBox0Move(r[0].move__c);
+                setBox1Move(r[1].move__c);
+                setBox2Move(r[2].move__c);
             });
     }, []);
 

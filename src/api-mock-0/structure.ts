@@ -1,4 +1,4 @@
-export type Box = {
-    id: number;
-    move: boolean;
+export type Box__c = {
+    id__c: number;
+    move__c: boolean;
 }

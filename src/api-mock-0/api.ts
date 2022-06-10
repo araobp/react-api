@@ -1,8 +1,8 @@
 import { BASE_URL } from "../parameters/constants";
 import { makeHeaders } from "./common";
-import { Box } from "./structure";
+import { Box__c } from "./structure";
 
-export const apiGetBox = async (): Promise<Array<Box>> => {
+export const apiGetBox = async (): Promise<Array<Box__c>> => {
 
     const headers = makeHeaders(
         {
@@ -16,7 +16,7 @@ export const apiGetBox = async (): Promise<Array<Box>> => {
     return data;
 }
 
-export const apiPatchBox = async (id:number, box:Box): Promise<null> => {
+export const apiPatchBox = async (id:number, box:Box__c): Promise<null> => {
 
     const headers = makeHeaders(
         {
