@@ -1,5 +1,7 @@
 const APP_NAME = "react-api";
 
+export const POLLING_TIMER = 3000;
+
 export const BASE_URL_KEY = `${APP_NAME}:baseURL`;
 export const USERNAME_KEY = `${APP_NAME}:uername`;
 export const PASSWORD_KEY = `${APP_NAME}:password`;

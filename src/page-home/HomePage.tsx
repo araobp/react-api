@@ -4,7 +4,7 @@ import { Box__c } from '../api-mock-0/structure';
 import '../App.css';
 
 import { Switch } from '../components-common/Switch';
-import { BASE_URL, USERNAME, PASSWORD, USERNAME_KEY, PASSWORD_KEY, BASE_URL_KEY } from '../parameters/constants';
+import { BASE_URL, USERNAME, PASSWORD, USERNAME_KEY, PASSWORD_KEY, BASE_URL_KEY, POLLING_TIMER } from '../parameters/constants';
 
 export const HomePage: FC = () => {
 
@@ -31,8 +31,8 @@ export const HomePage: FC = () => {
             .then(r => console.log(r));
     }
 
-    const setBoxMove = (id: number, isChecked: boolean) => {
-        switch (id) {
+    const setBoxMove = (id__c: number, isChecked: boolean) => {
+        switch (id__c) {
             case 0:
                 setBox0Move(isChecked);
                 break;
@@ -57,15 +57,37 @@ export const HomePage: FC = () => {
             });
     }
 
-    useEffect(() => {
-        apiGetBox()
+    const updateBoxes = () => {
+            apiGetBox()
             .then(r => {
                 console.log(r)
-                setBox0Move(r[0].move__c);
-                setBox1Move(r[1].move__c);
-                setBox2Move(r[2].move__c);
+                r.forEach(b => {
+                    switch(b.id__c) {
+                        case 0:
+                            setBox0Move(b.move__c);
+                            break;
+                        case 1:
+                            setBox1Move(b.move__c);
+                            break;
+                        case 2:
+                            setBox2Move(b.move__c);
+                            break;
+                        default:
+                            break;
+                    }
+                });
             });
-    }, []);
+    };
+
+    const startPolling = () => {
+        setInterval(() => {
+            updateBoxes();
+        }, POLLING_TIMER);
+    }
+
+    useEffect(() => {
+        startPolling();
+    }, [])
 
     return (
         <>
