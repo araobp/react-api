@@ -1,6 +1,6 @@
 import { useState, FC, useEffect } from 'react';
-import { apiGetBox, apiPatchBox } from '../api-mock-0/api';
-import { Box__c } from '../api-mock-0/structure';
+import { apiGetBox, apiPatchBox } from '../api-box/api';
+import { Box__c } from '../api-box/structure';
 import '../App.css';
 
 import { Switch } from '../components-common/Switch';
@@ -91,7 +91,7 @@ export const HomePage: FC = () => {
 
     return (
         <>
-            <h1>API Test</h1>
+            <h1>Box API Service</h1>
             <hr />
             <div>
                 <div style={{paddingBottom: "0.3rem"}}>URL:
