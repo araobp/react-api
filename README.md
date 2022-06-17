@@ -1,4 +1,4 @@
-# Web UI based on React
+# Web UI based on React (PWA)
 
 <img src="./doc/BoxesOnReact.png" width=400>
 
