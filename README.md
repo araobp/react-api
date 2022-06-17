@@ -4,6 +4,8 @@
 
 https://araobp.github.io/react-api/build/
 
+Caveat: restart the app after setting those parameters.
+
 ## Set up
 
 Enter Heroku app's URL of [spring-api](https://github.com/araobp/spring-api) and its username and password.
