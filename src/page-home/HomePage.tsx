@@ -1,5 +1,5 @@
 import { useState, FC, useEffect } from "react";
-import { apiGetBox, apiPatchBox } from "../api-box/api";
+import { apiGetBox, apiGetStats, apiPatchBox } from "../api-box/api";
 import { Box__c } from "../api-box/structure";
 import "../App.css";
 
@@ -36,9 +36,9 @@ export const HomePage: FC = () => {
     setShowSettings(false);
   };
 
-  const getBox = () => {
-    apiGetBox().then((r) => console.log(r));
-  };
+  const getStats = () => {
+    apiGetStats().then((r) => console.log(r));
+  }
 
   const setBoxMove = (id__c: number, isChecked: boolean) => {
     switch (id__c) {
@@ -164,8 +164,8 @@ export const HomePage: FC = () => {
         )}
 
         <hr />
-        <button className="small-button" type="submit" onClick={(e) => getBox()}>
-          Get
+        <button className="small-button" type="submit" onClick={(e) => getStats()}>
+          Stats
         </button>
 
         <hr />
