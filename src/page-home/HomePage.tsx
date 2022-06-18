@@ -24,6 +24,10 @@ export const HomePage: FC = () => {
   const [box1Move, setBox1Move] = useState<boolean>(false);
   const [box2Move, setBox2Move] = useState<boolean>(false);
 
+  const [box0Count, setBox0Count] = useState<number>(0);
+  const [box1Count, setBox1Count] = useState<number>(0);
+  const [box2Count, setBox2Count] = useState<number>(0);
+  
   const saveSettings = () => {
     if (username != "" && password != "") {
       localStorage.setItem(USERNAME_KEY, username);
@@ -37,7 +41,23 @@ export const HomePage: FC = () => {
   };
 
   const getStats = () => {
-    apiGetStats().then((r) => console.log(r));
+    apiGetStats().then(r => {
+      r.forEach(e => {
+        switch(e.id__c) {
+          case 0:
+            setBox0Count(e.count);
+            break;
+          case 1:
+            setBox1Count(e.count);
+            break;
+          case 2:
+            setBox2Count(e.count);
+            break;
+          default:
+            break;
+        }
+      }); 
+    });
   }
 
   const setBoxMove = (id__c: number, isChecked: boolean) => {
@@ -68,7 +88,7 @@ export const HomePage: FC = () => {
 
   const updateBoxes = () => {
     apiGetBox().then((r) => {
-      console.log(r);
+      //console.log(r);
       r.forEach((b) => {
         switch (b.id__c) {
           case 0:
@@ -167,6 +187,7 @@ export const HomePage: FC = () => {
         <button className="small-button" type="submit" onClick={(e) => getStats()}>
           Stats
         </button>
+        <div>Box0: {box0Count}, Box1: {box1Count}, Box2: {box2Count}</div>
 
         <hr />
       </div>
