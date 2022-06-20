@@ -43,7 +43,7 @@ export const HomePage: FC = () => {
   const getStats = () => {
     apiGetStats().then(r => {
       r.forEach(e => {
-        switch(e.id__c) {
+        switch(e.id) {
           case 0:
             setBox0Count(e.count);
             break;

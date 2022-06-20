@@ -7,6 +7,6 @@ export type Box__c = {
 }
 
 export type Box_Stats = {
-    id__c: number;
+    id: number;
     count: number
 }
