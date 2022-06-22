@@ -29,11 +29,11 @@ export const HomePage: FC = () => {
   const [box2Count, setBox2Count] = useState<number>(0);
   
   const saveSettings = () => {
-    if (username != "" && password != "") {
+    if (username !== "" && password !== "") {
       localStorage.setItem(USERNAME_KEY, username);
       localStorage.setItem(PASSWORD_KEY, password);
     }
-    if (baseURL != "") {
+    if (baseURL !== "") {
       localStorage.setItem(BASE_URL_KEY, baseURL);
     }
 
